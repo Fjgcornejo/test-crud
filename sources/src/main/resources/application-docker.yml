@@ -1,0 +1,33 @@
+spring:
+  boot.admin: #Spring Boot Admin Config    
+      client.url: https://${ONESAIT_SERVER_NAME}/monitoring
+      client.instance.service-url: https://${SERVER_NAME}/${server.servlet.contextPath}
+server: 
+   port: ${PORT}   
+   servlet:
+      contextPath: ${CONTEXT_PATH}  
+
+
+onesaitplatform:
+  iotclient:
+    urlRestIoTBroker: https://${ONESAIT_SERVER_NAME}/iot-broker
+    token: ${DEVICE_TOKEN}
+    deviceTemplate: ${DEVICE_TEMPLATE}
+    device: ${DEVICE_ID}
+
+security:
+  oauth2:
+    client:
+      clientId: ${OAUTH_CLIENT}
+      clientSecret: ${OAUTH_SECRET}
+      accessTokenUri: https://${ONESAIT_SERVER_NAME}/oauth-server/oauth/token
+      userAuthorizationUri: https://${ONESAIT_SERVER_NAME}/oauth-server/oauth/authorize
+      checkTokenEndpointUrl: https://${ONESAIT_SERVER_NAME}/oauth-server/oauth/check_token
+      preEstablishedRedirectUri: https://${SERVER_NAME}/microservice/login/oauth
+    resource:
+      userInfoUri: https://${ONESAIT_SERVER_NAME}/oauth-server/user
+      
+## LOGGING CONF
+logging:
+   path: /var/log 
+
