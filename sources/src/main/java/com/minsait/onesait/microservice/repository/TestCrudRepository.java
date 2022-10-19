@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.minsait.onesait.microservice.model.TestCrudWrapper;
 import com.minsait.onesait.platform.client.springboot.aspect.IoTBrokerInsert;
+import com.minsait.onesait.platform.client.springboot.aspect.IoTBrokerParam;
 import com.minsait.onesait.platform.client.springboot.aspect.IoTBrokerQuery;
 import com.minsait.onesait.platform.client.springboot.aspect.IoTBrokerRepository;
 import com.minsait.onesait.platform.comms.protocol.enums.SSAPQueryType;
@@ -16,4 +17,8 @@ public interface TestCrudRepository {
 
 	@IoTBrokerInsert
 	String insertTestCrudEntity(TestCrudWrapper crudWrapper);
+
+	@IoTBrokerQuery(value = "DELETE FROM TestCrud WHERE TestCrud.name='$name'", queryType = SSAPQueryType.SQL)
+	String deleteByName(@IoTBrokerParam("$name") String name);
+
 }
